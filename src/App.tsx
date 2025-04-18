@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Facebook, Smartphone, Laptop, Gamepad, HelpCircle, MapPin, Clock, Phone, Mail, Languages } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -7,13 +7,25 @@ function MainContent() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   
+  // Update language based on route path
+  useEffect(() => {
+    const shouldBeEnglish = location.pathname.startsWith('/en');
+    const currentLang = i18n.language;
+    
+    if (shouldBeEnglish && currentLang !== 'en') {
+      i18n.changeLanguage('en');
+    } else if (!shouldBeEnglish && currentLang !== 'fr') {
+      i18n.changeLanguage('fr');
+    }
+  }, [location.pathname, i18n]);
+  
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'fr' : 'en';
     const newPath = newLang === 'en' ? '/en' : '/';
     window.location.href = newPath;
   };
 
-  const mapUrl = "https://www.google.com/maps/place/2347+Rue+des+Ormeaux,+Montréal,+QC+H1L+4X2,+Canada";
+  const mapUrl = "https://maps.app.goo.gl/zbBSwXLPbpYpdKq78";
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -28,7 +40,7 @@ function MainContent() {
                 className="flex items-center gap-2 text-yellow-400 hover:text-yellow-300"
               >
                 <Languages size={24} />
-                <span>{i18n.language.toUpperCase()}</span>
+                <span>{i18n.language === 'en' ? 'FR' : 'EN'}</span>
               </button>
               <a 
                 href="https://www.facebook.com/micropcplus/" 

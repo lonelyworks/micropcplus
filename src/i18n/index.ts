@@ -2,6 +2,14 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+// Add type declaration for window.INITIAL_LANGUAGE
+declare global {
+  interface Window {
+    INITIAL_LANGUAGE?: string;
+  }
+}
+
+// Initialize i18n
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -50,10 +58,30 @@ i18n
         }
       }
     },
+    lng: 'fr', // Default language
     fallbackLng: "fr",
+    detection: {
+      order: ['path', 'htmlTag', 'navigator'],
+      lookupFromPathIndex: 0,
+      caches: ['localStorage']
+    },
     interpolation: {
       escapeValue: false
     }
   });
+
+// Set initial language based on URL if available
+if (typeof window !== 'undefined') {
+  // Check if prerendered language is available
+  const prerenderedLang = window.INITIAL_LANGUAGE;
+  
+  if (prerenderedLang) {
+    i18n.changeLanguage(prerenderedLang);
+  } else {
+    // Fallback to path detection
+    const initialLang = window.location.pathname.startsWith('/en') ? 'en' : 'fr';
+    i18n.changeLanguage(initialLang);
+  }
+}
 
 export default i18n;
