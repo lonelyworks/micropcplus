@@ -79,6 +79,12 @@ for (const route of routes) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
   
+  // Before writing the file
+  if (fs.existsSync(outputPath) && fs.statSync(outputPath).isDirectory()) {
+    console.error(`Error: Cannot write file at ${outputPath} - it's a directory`);
+    continue;
+  }
+  
   // Write the file
   fs.writeFileSync(outputPath, routeTemplate);
   console.log(`Created static file: ${outputPath}`);
