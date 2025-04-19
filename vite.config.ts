@@ -9,5 +9,7 @@ export default defineConfig({
   },
   build: {
     minify: 'terser',
-  },
+    outDir: 'dist',
+    emptyOutDir: true
+  }
 });

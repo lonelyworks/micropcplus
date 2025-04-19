@@ -21,7 +21,7 @@ const contentByLang = {
   fr: {
     title: 'Micro PC Plus',
     description: 'Micro PC Plus offre des services de vente d\'ordinateurs, de réparations et de support technique à Montréal. Visitez-nous pour tous vos besoins en informatique, mobile et consoles de jeu.',
-    canonical: 'https://micropcplus.com',
+    canonical: 'https://micro-pcplus.ca',
     ogTitle: 'Micro PC Plus - Vente et Réparation d\'Ordinateurs à Montréal',
     ogDescription: 'Services de vente, réparation et soutien technique pour ordinateurs, mobiles et consoles à Montréal.',
     structuredDescription: 'Services de vente, réparation et soutien technique pour ordinateurs à Montréal'
@@ -29,7 +29,7 @@ const contentByLang = {
   en: {
     title: 'Micro PC Plus | Computer Sales & Repair Services',
     description: 'Micro PC Plus offers computer sales, repairs, and tech support services in Montreal. Visit us for all your computer, mobile, and gaming console needs.',
-    canonical: 'https://micropcplus.com/en',
+    canonical: 'https://micro-pcplus.ca/en',
     ogTitle: 'Micro PC Plus - Computer Sales & Repair in Montreal',
     ogDescription: 'Computer sales, repair and technical support services for computers, mobile devices and consoles in Montreal.',
     structuredDescription: 'Computer sales, repairs, and tech support services in Montreal'
